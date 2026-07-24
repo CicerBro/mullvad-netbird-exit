@@ -1,0 +1,2 @@
+# Butane is YAML; the .tpl suffix otherwise makes GitHub classify it as Smarty.
+router.bu.tpl linguist-language=YAML
