@@ -20,6 +20,11 @@ storage:
     - path: /etc/nftables
       mode: 0755
 
+  links:
+    - path: /etc/localtime
+      target: /usr/share/zoneinfo/${TIMEZONE}
+      overwrite: true
+
   files:
     - path: /etc/hostname
       mode: 0644

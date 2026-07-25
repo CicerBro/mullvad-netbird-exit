@@ -17,7 +17,7 @@ source .env
 set +a
 
 required=(
-  HOSTNAME SSH_PUBLIC_KEY NETBIRD_SETUP_KEY NETBIRD_OVERLAY_CIDR
+  HOSTNAME SSH_PUBLIC_KEY TIMEZONE NETBIRD_SETUP_KEY NETBIRD_OVERLAY_CIDR
   NETBIRD_WG_PORT MULLVAD_ACCOUNT MULLVAD_COUNTRY MULLVAD_CITY
 )
 for variable in "${required[@]}"; do
@@ -33,7 +33,7 @@ if [[ ! "$NETBIRD_WG_PORT" =~ ^[0-9]+$ ]] || (( NETBIRD_WG_PORT < 1 || NETBIRD_W
   exit 1
 fi
 
-template_variables='$HOSTNAME $SSH_PUBLIC_KEY $NETBIRD_SETUP_KEY $NETBIRD_OVERLAY_CIDR $NETBIRD_WG_PORT $MULLVAD_ACCOUNT $MULLVAD_COUNTRY $MULLVAD_CITY'
+template_variables='$HOSTNAME $SSH_PUBLIC_KEY $TIMEZONE $NETBIRD_SETUP_KEY $NETBIRD_OVERLAY_CIDR $NETBIRD_WG_PORT $MULLVAD_ACCOUNT $MULLVAD_COUNTRY $MULLVAD_CITY'
 envsubst "$template_variables" < router.bu.tpl > router.bu
 
 docker run --rm -i quay.io/coreos/butane:release --pretty --strict < router.bu > router.ign
